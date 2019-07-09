@@ -73,12 +73,14 @@ window.addEventListener('load', (event) => {
      {hh.push(h2s[i].textContent)}
 
 })
-// 11. restore pictures to original position on click
+// 11. restore pictures and h2s to original position on click
 let html = document.querySelector('html')
 
 html.addEventListener('click', (event) => {
     for (i=0; i<imgs.length; i++)
      {imgs[i].src = images[i]}
+     for (i=0; i<h2s.length; i++)
+     {h2s[i].textContent = hh[i]}
 
 })
 // 12. on window resize, so height and width
@@ -96,3 +98,24 @@ html.addEventListener('paste', (event) => {
     const selection = document.getSelection();
     alert( selection)
 });
+
+// 15. on wheel spin, rotate h2 text
+window.addEventListener('wheel', (event) => {
+    event.stopPropagation();
+    for (i=0, x=''; i<h2s.length; i++)
+    {
+      if (i===0)
+      {
+        x = h2s[i].textContent
+        h2s[i].textContent = h2s[i+1].textContent
+      }
+    else
+    {
+        if (i===h2s.length - 1)
+        {h2s[i].textContent = x }
+        else
+        { h2s[i].textContent = h2s[i+1].textContent }
+    }
+    }
+    
+})
