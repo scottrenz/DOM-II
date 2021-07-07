@@ -1,116 +1,121 @@
 // Your code goes here
+    // event.target.style.backgroundColor = 'white';
+    // event.target.style.borderColor = 'green';
+    // event.target.style.borderStyle = 'solid';
 
-//1 Make 'About Us' go to about.html on mouse click
-const myA = document.querySelectorAll('a');
-const myAbout = myA[1];
-myAbout.addEventListener('click', (event) => {
-myAbout.href = 'about.html'
-})
-// end about mouse click
-
-//2 make H tag text turn red when mouse passes over form
-// and turn black if already red
-const myH = document.querySelectorAll('h1, h2, h3, h4, h5');
-document.addEventListener("mouseenter", function( event ) {   
-    // highlight the mouseenter target
-    for ( i = 0; i < (myH.length - 1); i++)
-    if( myH[i].style.color === "red" )
-      { myH[i].style.color = "black"}
+    // 1. double the home item when moused over
+    let home = document.querySelector('.nav-link');
+    home.addEventListener('mouseover', (event) => {
+        event.target.textContent = 'Home Home'
+        event.target.style = 'width: 10px;'
+      });
+    // 2. restore the home item when mouse leaves
+    home.addEventListener('mouseleave', (event) => {
+        event.target.textContent = 'Home'
+      });
+    // 3. double the about item when moused over
+    let about = document.querySelector('.nav-link:nth-of-type(2)');
+      about.addEventListener('mouseover', (event) => {
+        event.target.textContent = 'About Us About Us'
+        event.target.style = 'width: 10px;'
+      });
+    // 4. restore the about item when mouse leaves
+    about.addEventListener('mouseleave', (event) => {
+        event.target.textContent = 'About Us'
+      });
+    // 5. double the blog item when moused over
+    let blog = document.querySelector('.nav-link:nth-of-type(3)');
+      blog.addEventListener('mouseover', (event) => {
+        event.target.textContent = 'Blog Blog'
+        event.target.style = 'width: 10px;'
+      });
+    // 6. restore the blog item when mouse leaves
+    blog.addEventListener('mouseleave', (event) => {
+        event.target.textContent = 'Blog'
+      });
+    // 7. double the contact item when moused over
+    let contact = document.querySelector('.nav-link:nth-of-type(4)');
+      contact.addEventListener('mouseover', (event) => {
+        event.target.textContent = 'Contact Contact'
+        event.target.style = 'width: 10px;'
+      });
+    // 8. restore the contact item when mouse leaves
+    contact.addEventListener('mouseleave', (event) => {
+        event.target.textContent = 'Contact'
+      });
+// 9. rotate pictures when scrolled
+      let imgs = document.querySelectorAll('img')
+      window.addEventListener('scroll', (event) => {
+for (i=0, x=''; i<imgs.length; i++)
+{
+  if (i===0)
+  {
+    x = imgs[i].src
+    imgs[i].src = imgs[i+1].src
+  }
+else
+{
+    if (i===imgs.length - 1)
+    {imgs[i].src = x }
     else
-      { myH[i].style.color = "red"}
+    { imgs[i].src = imgs[i+1].src }
 }
-)
-// end mouse pass over
-
-//3 alert when page is loaded
+}
+})
+// 10. save picture paths  and h2 texts on load
+let images = []
+let h2s = document.querySelectorAll('h2')
+let hh =[]
 window.addEventListener('load', (event) => {
-    alert('Get Ready For The Fun Bus!!!');
-});
-// end alert when loaded
+    for (i=0; i<imgs.length; i++)
+     {images.push(imgs[i].src)}
+    for (i=0; i<h2s.length; i++)
+     {hh.push(h2s[i].textContent)}
 
-//4 keydown on input box toggle background between blue and white
-var input = document.createElement("input");
-myH[1].appendChild(input) //'<a href="#">More</a>')
-const myInput = document.querySelector('input');
-myInput.type = 'text';
-myInput.name = 'name';
-myInput.value = '';
-myInput.placeholder = 'Joe';
-myInput.style = 'padding: 20px' 
-myInput.addEventListener('keydown', (event) => {
-    if(event.target.style.backgroundColor === 'blue')
-  {
-    event.target.style.backgroundColor = 'white';
-    event.target.style.color = 'black';
-  
-  }
-    else
-    {
-      event.target.style.backgroundColor = 'blue';
-      event.target.style.color = 'white';
-    }
-  }
-  )
-// end keydown on input box toggle background between blue and white
-
-//5 Alert new window view size when resized
-function reportWindowSize() {
-  alert('Window view size is now ' + window.innerHeight + 'x' +window.innerWidth)
-}
-window.onresize = reportWindowSize;
-// end Alert new window view size when resized
-
-//6 double click on input box toggle background between pink and white
-myInput.addEventListener('dblclick', function (evrnt) {
-    if(event.target.style.backgroundColor === 'pink')
-  {
-    event.target.style.backgroundColor = 'white';
-    event.target.style.color = 'black';
-  
-  }
-    else
-    {
-      event.target.style.backgroundColor = 'pink';
-      event.target.style.color = 'white';
-    }
-  }
-  )
-//end double click on input box toggle background between pink and white
-
-//7 alert when about to print
-window.onbeforeprint = (event) => {
-    alert('You are about to print this page');
-  };
-//end alert when about to print
-
-//8 on scrollin toggle background between red and white
-const myHtml = document.querySelectorAll('html');
-window.addEventListener('scroll', function(event) {
-    if(myHtml[0].style.backgroundColor === 'red')
-  {
-    myHtml[0].style.backgroundColor = 'white';
-  }
-    else
-    {
-        myHtml[0].style.backgroundColor = 'red';
-    }
-});
-//end on scrollin toggle background between red and white
-
-//9 put letter typed in input into console log
-input.addEventListener('input', function(event) {
-  console.log(event.data);
 })
-//end put letter typed in input into console log
+// 11. restore pictures and h2s to original position on click
+let html = document.querySelector('html')
 
-//10 put letters selected in input into console log
-input.addEventListener('select',function(event) {
-    const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
-    console.log(`You selected: ${selection}`)
-  })
-//end put letters selected in input into console log
+html.addEventListener('click', (event) => {
+    for (i=0; i<imgs.length; i++)
+     {imgs[i].src = images[i]}
+     for (i=0; i<h2s.length; i++)
+     {h2s[i].textContent = hh[i]}
 
-// Cancel the event as stated by the standard.
-//   event.preventDefault();
-  // Chrome requires returnValue to be set.
-//   event.returnValue = '';
+})
+// 12. on window resize, so height and width
+window.addEventListener('resize', (event) => {
+    alert(window.innerHeight+ 'x' + window.innerWidth)
+
+})
+// 13. give alert message showing what was copied to the clipboard
+html.addEventListener('copy', (event) => {
+    const selection = document.getSelection();
+    alert( selection)
+});
+// 14. give alert message showing what was copied to the clipboard
+html.addEventListener('paste', (event) => {
+    const selection = document.getSelection();
+    alert( selection)
+});
+
+// 15. on wheel spin, rotate h2 text
+window.addEventListener('wheel', (event) => {
+    event.stopPropagation();
+    for (i=0, x=''; i<h2s.length; i++)
+    {
+      if (i===0)
+      {
+        x = h2s[i].textContent
+        h2s[i].textContent = h2s[i+1].textContent
+      }
+    else
+    {
+        if (i===h2s.length - 1)
+        {h2s[i].textContent = x }
+        else
+        { h2s[i].textContent = h2s[i+1].textContent }
+    }
+    }
+    
+})
